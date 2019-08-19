@@ -1,0 +1,6 @@
+
+##Babel
+Se ponen los preset en el archivo .babelrc
+>> agregando: npm i babel-cli babel-preset-env babel-preset-stage-3
+
+Para utilizar Graphql en node tambien se puede instalar Apollo server. 
