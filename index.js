@@ -12,9 +12,13 @@ import mongoose from 'mongoose'
 mongoose.Promise = global.Promise;
 
 
+import path from 'path';
 
-import typeDefs from  './schemas'
-import resolvers from  './resolvers'
+import {fileLoader, mergeTypes,mergeResolvers } from 'merge-graphql-schemas';
+const typeDefs = mergeTypes(fileLoader(path.join(__dirname, "./types")));
+const resolvers = mergeResolvers(
+  fileLoader(path.join(__dirname, "./resolvers"))
+);
 
 const PORT = 2000
 

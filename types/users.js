@@ -7,6 +7,13 @@ export default `
         username: String!
         password: String!
     }
+
+    type UserShort{
+        _id: ID
+        username: String!
+        thumbnail: String
+    }
+
     type Query {
         allUsers: [User]!
         getUser(_id: ID!): User

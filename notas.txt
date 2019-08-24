@@ -5,6 +5,13 @@ Se ponen los preset en el archivo .babelrc
 
 Para utilizar Graphql en node tambien se puede instalar Apollo server. 
 
+## Para la creacion de un esquema de graphql se usa el siguiente
+modulo: npm i merge-graphql-schemas
+
+
+
+
+
 ## Documentación 
 
 Graphql se basa en SDL (scheme defination language): 
