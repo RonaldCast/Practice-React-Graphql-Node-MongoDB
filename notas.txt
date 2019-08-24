@@ -4,3 +4,108 @@ Se ponen los preset en el archivo .babelrc
 >> agregando: npm i babel-cli babel-preset-env babel-preset-stage-3
 
 Para utilizar Graphql en node tambien se puede instalar Apollo server. 
+
+## Documentación 
+
+Graphql se basa en SDL (scheme defination language): 
+es un lenguaje de presentacion de datos, ejemplo:
+type Person {
+    name: String, 
+    age: Int!,
+    posts: [post!]!
+}
+type Person {
+  name: String!
+  age: Int!
+}
+
+//obtener persona
+{
+  allPersons {
+    name
+  }
+}
+
+ejemplo de consulta para obtener las dos utlimas personas 
+allPersons(last: 2){
+    name
+}
+
+##Escribir datos con Las muraciones 
+Estas se realizan para cambiar datos en la data 
+    > Creando nuevos datos. Create
+    > Actulizar datos existente. update 
+    > Eliminar datos existente. Delete 
+
+Las mutaciones se deben de iniciar con las palabras mutation
+
+mutation{
+    createPerson(name: "Bob", age: 30){
+        name
+        age
+    }
+}
+
+tambien Graphql si a una propiedad se le pone ID
+este crea el ID automaticamente 
+
+type Person {
+    id: ID!
+    name: String! 
+    age: Int!
+}
+
+Actulizaciones en tiempo real con suscripciones 
+
+> Subscription: se utilizar en Graphql para obtener la data actualizada en tiempo real.
+> Cuando un cliente se suscribe a un evento mantiene una conexion estable con el servidor.
+
+Ejemplo
+
+subscription {
+  newPerson {
+    name
+    age
+  }
+}
+
+
+##Definiendo un esquema
+El esquema define como los clientes puenden solicitar los datos.
+Es un contrato entre servidor y cliente. 
+
+##Raiz de los esquemas
+
+type Query { ... }
+type Mutation { ... }
+type Subscription { ... }
+
+Son tipos de entradas para las peticiones enviadas por el cliente, 
+type Query{
+    allPersons: [Person!]!
+}
+type Query {
+  allPersons(last: Int): [Person!]!
+}
+type Mutation {
+  createPerson(name: String!, age: Int!): Person!
+}
+type Subscription {
+  newPerson: Person!
+}
+
+#Big Picture (Arquitectura)
+
+Como las consultas o mutaciones consisten en un conjuntos de campos,
+estos compos le corresponde exactamente a una funcion llamada resolutor.
+el unico proposito de esta funcion es obtener los datos para el campo. 
+cuando el servidor obtiene la consulta llama todas las cuniones para los campos 
+especificados. 
+
+
+
+
+
+
+
+
